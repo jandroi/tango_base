@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'main_home',
     'main_data_management',
 
-    # Feature apps (app_*) are added per product/demo as they are migrated
-    # in from tango_bsm. The platform layer above runs standalone.
+    # Optional feature apps (app_*) are added per product or deployment.
+    # The platform layer above runs standalone.
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,6 @@
 # Tango Base — Architecture
 
-This scaffold follows the Tango Modular Django convention. The full governance doc is `tango_bsm/office/governance/tango_context.md`; this file is the practical view of how `tango_base` implements it.
+This scaffold follows the Tango Modular Django convention. This file describes how `tango_base` implements that convention.
 
 ## Layering
 
@@ -11,7 +11,7 @@ This scaffold follows the Tango Modular Django convention. The full governance d
   - `main_media` — project media root (`MEDIA_ROOT`)
 - **`app_*` apps** — feature/micro-SaaS layer. Each one self-contained, no hard cross-app coupling.
 
-> Note: governance prescribes `main_branding` for the layout role. This scaffold uses `main_home` (matches the convention used in `tango_bsm`). Pick one and stay consistent inside a project.
+> Note: this scaffold uses `main_home` for the shared layout role. Keep that choice consistent inside a project.
 
 ## What lives in each app
 

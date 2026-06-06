@@ -175,8 +175,7 @@
 
                     <div id="hamburger-menu" class="hidden absolute top-full right-0 mt-1 w-64 bg-white rounded-md shadow-lg py-1 z-50" role="menu">
                         <a href="{% url 'main_distributor' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Main</a>
-                        {# Feature-app links (Brand Standards, Property Management, Hotel Audit, #}
-                        {# Procurement, Inventory) return here as each app_* is migrated in from tango_bsm. #}
+                        {# Optional module links appear here when their modules are installed. #}
                         <a href="{% url 'data_management:dashboard' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Data Management</a>
                         {% if request.user.is_staff %}
                         <hr class="my-1 border-gray-200">
