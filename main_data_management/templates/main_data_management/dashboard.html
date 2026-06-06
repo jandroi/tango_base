@@ -1,0 +1,348 @@
+{% extends "main_home/base.html" %}
+
+{% block title %}Data Management | Tango{% endblock %}
+
+{% block content %}
+<style>
+    .data-management-dashboard .dm-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .data-management-dashboard .dm-action-form {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .data-management-dashboard .dm-action-btn {
+        margin-top: auto;
+        background: linear-gradient(180deg, var(--color-primary) 0%, #45404e 100%);
+        border: 1px solid #45404e;
+        color: var(--color-light);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+    }
+
+    .data-management-dashboard .dm-action-btn:hover,
+    .data-management-dashboard .dm-action-btn:focus {
+        background: linear-gradient(180deg, #5d5570 0%, var(--color-primary) 100%);
+        border-color: var(--color-primary);
+        color: var(--color-light);
+    }
+
+    .data-management-dashboard .dm-jobs-table thead th {
+        background: linear-gradient(180deg, #667095 0%, #576085 100%);
+        color: var(--color-light);
+        border-bottom: 1px solid rgba(242, 244, 242, 0.35);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+    }
+
+    .dm-scope-picker { display: none; }
+    .dm-scope-picker.visible { display: block; }
+</style>
+
+<div class="data-management-dashboard max-w-6xl mx-auto px-2 py-4">
+    <div class="mb-4">
+        <h1 class="text-3xl font-semibold">Data Management</h1>
+        <p class="text-slate-600 mt-1">Bulk import and export for registry-approved tables.</p>
+    </div>
+
+    <div class="alert alert-info rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 mb-4 text-sm text-blue-900" id="banner-rename-2026-04">
+        <strong>Model rename (2026-04):</strong>
+        <code>HotelUnit</code> &rarr; <code>PropertyConfiguration</code>,
+        <code>BrandStandard</code> &rarr; <code>BrandStandardsCatalog</code>,
+        <code>Standard</code> &rarr; <code>PropertyStandardsCatalog</code>,
+        <code>StandardFile</code> &rarr; <code>PropertyStandardsCatalogFile</code>.
+        Re-download the CSV templates below — old filenames (e.g.
+        <code>app_hospitality_core_hotelunit.csv</code>) no longer match the registry.
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-4 mb-5">
+
+        {# ---- Import card ---- #}
+        <section class="dm-card bg-white border border-slate-200 rounded-3xl shadow-sm p-4">
+            <h2 class="text-xl font-semibold mb-1">Import</h2>
+            <p class="text-sm text-slate-600 mb-3">
+                Upload a <code>.zip</code>, <code>.csv</code>, or <code>.xlsx</code> file.
+                For a single file, select the entity type so the system knows what to import.
+                ZIP archives are matched by filename — download templates below for correct filenames.
+            </p>
+
+            {% if can_validate %}
+            <form method="post" action="{% url 'data_management:import' %}" enctype="multipart/form-data" class="dm-action-form">
+                {% csrf_token %}
+
+                <input id="upload_file" name="upload_file" type="file" accept=".zip,.csv,.xlsx" class="hidden" required>
+
+                <label for="upload_file" id="drop-zone" class="block w-full rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 transition p-4 text-center cursor-pointer">
+                    <div class="text-sm font-medium text-slate-700">Drag and drop file here</div>
+                    <div class="text-xs text-slate-500 mt-1">or click to browse</div>
+                    <div id="selected-file" class="text-xs text-slate-600 mt-2"></div>
+                </label>
+
+                <div>
+                    <label for="import-model-label" class="form-label">Entity type <span class="text-slate-400 font-normal">(required for single .csv/.xlsx, skip for ZIP)</span></label>
+                    <select name="model_label" id="import-model-label" class="form-select">
+                        <option value="">--- Select entity type ---</option>
+                        {% for entry in importable_entries %}
+                        <option value="{{ entry.model_label }}">
+                            {% if entry.model_label == "app_brand_standard.Brand" %}Brand
+                            {% elif entry.model_label == "app_brand_standard.BrandStandard" %}Brand Standard
+                            {% elif entry.model_label == "app_hospitality_core.Property" %}Property
+                            {% elif entry.model_label == "app_hospitality_core.Building" %}Building
+                            {% elif entry.model_label == "app_hospitality_core.HotelUnit" %}Hotel Unit
+                            {% elif entry.model_label == "app_hospitality_core.Guestroom" %}Guestroom (subtype)
+                            {% elif entry.model_label == "app_hospitality_core.FnBOutlet" %}F&amp;B Outlet (subtype)
+                            {% elif entry.model_label == "app_hospitality_core.PublicArea" %}Public Area (subtype)
+                            {% elif entry.model_label == "app_hospitality_core.BOHUnit" %}BOH Unit (subtype)
+                            {% elif entry.model_label == "app_hospitality_core.AdministrativeOffice" %}Administrative Office (subtype)
+                            {% elif entry.model_label == "app_brand_standard.Standard" %}Property Standard
+                            {% elif entry.model_label == "app_brand_standard.StandardFile" %}Standard File
+                            {% else %}{{ entry.model_label }}{% endif %}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="id_mode" class="form-label">Mode</label>
+                    <select name="mode" id="id_mode" class="form-select">
+                        <option value="append" selected>Append (add new records)</option>
+                        {% if can_replace %}
+                        <option value="replace">Replace (delete all, then insert)</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn dm-action-btn w-100">Import Data</button>
+            </form>
+            {% else %}
+            <div class="rounded-xl bg-amber-50 text-amber-900 p-3 text-sm border border-amber-200">
+                Your user cannot run data imports.
+            </div>
+            {% endif %}
+        </section>
+
+        {# ---- Export card ---- #}
+        <section class="dm-card bg-white border border-slate-200 rounded-3xl shadow-sm p-4">
+            <h2 class="text-xl font-semibold mb-1">Export</h2>
+            <p class="text-sm text-slate-600 mb-3">
+                Download a CSV snapshot. Filter by property, brand, or export everything.
+            </p>
+
+            {% if can_export %}
+            <form method="post" action="{% url 'data_management:export' %}" class="dm-action-form" id="export-form">
+                {% csrf_token %}
+
+                <div>
+                    <label for="export-scope" class="form-label">Scope</label>
+                    <select name="scope" id="export-scope" class="form-select">
+                        <option value="all" selected>All data</option>
+                        <option value="property">By Property</option>
+                        <option value="brand">By Brand</option>
+                    </select>
+                </div>
+
+                <div class="dm-scope-picker" id="property-picker">
+                    <label for="export-property-id" class="form-label">Property</label>
+                    <select id="export-property-id" class="form-select">
+                        <option value="">--- Select property ---</option>
+                        {% for p in properties %}
+                        <option value="{{ p.property_id }}">{{ p.property_name }} ({{ p.property_code }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="dm-scope-picker" id="brand-picker">
+                    <label for="export-brand-id" class="form-label">Brand</label>
+                    <select id="export-brand-id" class="form-select">
+                        <option value="">--- Select brand ---</option>
+                        {% for b in brands %}
+                        <option value="{{ b.brand_id }}">{{ b.brand_name }} ({{ b.brand_code }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <input type="hidden" name="scope_id" id="export-scope-id" value="">
+
+                <button type="submit" class="btn dm-action-btn w-100">Download Export (CSV)</button>
+            </form>
+            {% else %}
+            <div class="rounded-xl bg-amber-50 text-amber-900 p-3 text-sm border border-amber-200">
+                Your user cannot run exports.
+            </div>
+            {% endif %}
+        </section>
+    </div>
+
+    {# ---- Templates section ---- #}
+    <section class="bg-white border border-slate-200 rounded-3xl shadow-sm p-4 mb-5">
+        <h2 class="text-xl font-semibold mb-1">Import Templates</h2>
+        <p class="text-sm text-slate-600 mb-3">
+            Download a CSV template with the correct column headers for each entity type.
+            Fill it in and upload using the Import form above.
+            Required columns are marked — leave audit columns (created_by, etc.) blank; they are set automatically.
+        </p>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Required columns</th>
+                        <th>ZIP filename</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in importable_entries %}
+                    <tr>
+                        <td class="font-medium">
+                            {% if entry.model_label == "app_brand_standard.Brand" %}Brand
+                            {% elif entry.model_label == "app_brand_standard.BrandStandard" %}Brand Standard
+                            {% elif entry.model_label == "app_hospitality_core.Property" %}Property
+                            {% elif entry.model_label == "app_hospitality_core.Building" %}Building
+                            {% elif entry.model_label == "app_hospitality_core.HotelUnit" %}Hotel Unit
+                            {% elif entry.model_label == "app_hospitality_core.Guestroom" %}Guestroom
+                            {% elif entry.model_label == "app_hospitality_core.FnBOutlet" %}F&amp;B Outlet
+                            {% elif entry.model_label == "app_hospitality_core.PublicArea" %}Public Area
+                            {% elif entry.model_label == "app_hospitality_core.BOHUnit" %}BOH Unit
+                            {% elif entry.model_label == "app_hospitality_core.AdministrativeOffice" %}Administrative Office
+                            {% elif entry.model_label == "app_brand_standard.Standard" %}Property Standard
+                            {% elif entry.model_label == "app_brand_standard.StandardFile" %}Standard File
+                            {% else %}{{ entry.model_label }}{% endif %}
+                        </td>
+                        <td class="text-xs text-slate-600">{{ entry.required_fields|join:", " }}</td>
+                        <td class="text-xs font-mono text-slate-500">{{ entry.table_name }}.csv</td>
+                        <td>
+                            <a href="{% url 'data_management:template_download' entry.model_label %}"
+                               class="btn btn-sm btn-outline-secondary">
+                                Download template
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    {# ---- Recent Import Jobs ---- #}
+    <section class="bg-white border border-slate-200 rounded-3xl shadow-sm p-4">
+        <h3 class="text-lg font-semibold mb-3">Recent Import Jobs</h3>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle dm-jobs-table">
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in recent_imports %}
+                    <tr>
+                        <td><a href="{% url 'data_management:import_job_detail' job.job_uuid %}">{{ job.job_uuid }}</a></td>
+                        <td>{{ job.get_mode_display }}</td>
+                        <td>{{ job.get_status_display }}</td>
+                        <td>{{ job.created_at|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="4" class="text-slate-500">No import jobs yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<script>
+(function () {
+    // ---- Drop zone ----
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('upload_file');
+    const selected = document.getElementById('selected-file');
+
+    if (dropZone && fileInput) {
+        const setSelected = (file) => {
+            if (!file || !selected) return;
+            selected.textContent = `Selected: ${file.name}`;
+        };
+
+        fileInput.addEventListener('change', function () {
+            if (this.files && this.files.length > 0) {
+                setSelected(this.files[0]);
+            }
+        });
+
+        ['dragenter', 'dragover'].forEach((eventName) => {
+            dropZone.addEventListener(eventName, (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                dropZone.classList.add('border-slate-500', 'bg-slate-100');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach((eventName) => {
+            dropZone.addEventListener(eventName, (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                dropZone.classList.remove('border-slate-500', 'bg-slate-100');
+            });
+        });
+
+        dropZone.addEventListener('drop', (event) => {
+            const files = event.dataTransfer.files;
+            if (!files || !files.length) return;
+            fileInput.files = files;
+            setSelected(files[0]);
+        });
+    }
+
+    // ---- Export scope picker ----
+    const scopeSelect = document.getElementById('export-scope');
+    const propertyPicker = document.getElementById('property-picker');
+    const brandPicker = document.getElementById('brand-picker');
+    const propertySelect = document.getElementById('export-property-id');
+    const brandSelect = document.getElementById('export-brand-id');
+    const scopeIdInput = document.getElementById('export-scope-id');
+
+    if (scopeSelect) {
+        const updateScopePicker = () => {
+            const scope = scopeSelect.value;
+            propertyPicker && propertyPicker.classList.toggle('visible', scope === 'property');
+            brandPicker && brandPicker.classList.toggle('visible', scope === 'brand');
+            scopeIdInput.value = '';
+        };
+
+        scopeSelect.addEventListener('change', updateScopePicker);
+
+        if (propertySelect) {
+            propertySelect.addEventListener('change', () => {
+                if (scopeSelect.value === 'property') scopeIdInput.value = propertySelect.value;
+            });
+        }
+        if (brandSelect) {
+            brandSelect.addEventListener('change', () => {
+                if (scopeSelect.value === 'brand') scopeIdInput.value = brandSelect.value;
+            });
+        }
+
+        updateScopePicker();
+
+        const exportForm = document.getElementById('export-form');
+        if (exportForm) {
+            exportForm.addEventListener('submit', () => {
+                if (scopeSelect.value === 'all') {
+                    scopeIdInput.value = '';
+                }
+            });
+        }
+    }
+})();
+</script>
+{% endblock %}

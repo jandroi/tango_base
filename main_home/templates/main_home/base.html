@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="{% block og_title %}Tango Data Solutions Boutique{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Premium data solutions and hospitality management platform. Streamline your brand standards and property management with Tango.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:site_name" content="Tango Data">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
+    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{% block og_image_alt %}Tango Data Solutions Boutique{% endblock %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Tango Data Solutions Boutique{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Premium data solutions and hospitality management platform.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
+
+    <meta name="description" content="{% block description %}Premium data solutions and hospitality management platform. Streamline your brand standards and property management with Tango.{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <title>{% block title %}Tango Data{% endblock %}</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "tango-dark": "#4F4759",
+                        "tango-medium": "#7079A0",
+                        "tango-accent": "#8097D1",
+                        "tango-light": "#F2F4F2",
+                        "tango-footer": "#CED0CE",
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #4F4759;
+            --color-secondary: #7079A0;
+            --color-accent: #8097D1;
+            --color-light: #F2F4F2;
+            --color-green: #ACB8B2;
+            --color-green-text: #4F4759;
+            --color-red: #B2505B;
+            --color-background: #F2F4F2;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        .navbar {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+        }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: var(--color-light);
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--color-accent);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-primary);
+        }
+
+        .table thead {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+
+        .table tbody tr:hover {
+            background-color: transparent;
+            color: inherit;
+        }
+
+        .btn-primary,
+        .btn-submit {
+            background-color: var(--color-accent);
+            color: var(--color-light);
+            border: none;
+        }
+
+        .btn-primary:hover,
+        .btn-submit:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .btn-accept {
+            background-color: var(--color-green);
+            color: var(--color-green-text);
+            border: none;
+        }
+
+        .btn-accept:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+
+        .btn-danger {
+            background-color: var(--color-red);
+            color: var(--color-light);
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% block navbar %}
+    <header class="w-full bg-gray-900/70 text-white fixed top-0 left-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+            <div class="flex items-baseline gap-3">
+                <a href="/" class="font-semibold tracking-wide hover:text-gray-200">Tango</a>
+                <span class="text-xs opacity-80 tracking-[0.18em]">Data Solutions Boutique</span>
+            </div>
+
+            <nav class="flex items-center gap-6 text-sm">
+                {% if request.user.is_authenticated %}
+                <div class="flex items-center gap-3">
+                    <span class="text-sm hidden md:block">{{ request.user.first_name|default:request.user.email }}</span>
+
+                    <div class="relative" id="userDropdown">
+                        <button class="flex items-center focus:outline-none" type="button" onclick="toggleDropdown()" aria-expanded="false" id="user-dropdown-btn">
+                            {% if request.user.profile_picture %}
+                            <img
+                                src="{{ request.user.profile_picture.url }}"
+                                alt="Profile"
+                                class="w-8 h-8 rounded-full object-cover border-2 border-white hover:border-gray-300 transition cursor-pointer"
+                            >
+                            {% else %}
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center border-2 border-white hover:border-gray-300 transition cursor-pointer">
+                                <span class="text-xs font-semibold">{{ request.user.first_name|default:request.user.email|first|upper }}</span>
+                            </div>
+                            {% endif %}
+                        </button>
+
+                        <div id="dropdownMenu" class="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50" role="menu">
+                            <a href="/users/profile/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
+                            <hr class="my-1 border-gray-200">
+                            <form method="post" action="{% url 'logout' %}" class="block">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100" role="menuitem">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative" id="hamburgerDropdown">
+                    <button id="hamburger-btn" class="p-2 hover:opacity-90 z-50" type="button" aria-expanded="false">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+
+                    <div id="hamburger-menu" class="hidden absolute top-full right-0 mt-1 w-64 bg-white rounded-md shadow-lg py-1 z-50" role="menu">
+                        <a href="{% url 'main_distributor' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Main</a>
+                        {# Feature-app links (Brand Standards, Property Management, Hotel Audit, #}
+                        {# Procurement, Inventory) return here as each app_* is migrated in from tango_bsm. #}
+                        <a href="{% url 'data_management:dashboard' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Data Management</a>
+                        {% if request.user.is_staff %}
+                        <hr class="my-1 border-gray-200">
+                        <a href="/admin/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Admin</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <a href="/users/login/" class="hover:text-gray-200">Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="pt-14"></div>
+    {% endblock %}
+
+    {% block page_body %}
+    <div class="{% block page_container_class %}container mt-4{% endblock %}">
+        {% block content %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    {% block messages %}
+    {% if messages %}
+    <div id="toast-container" class="fixed top-20 right-4 z-50 flex w-full max-w-sm flex-col gap-3" role="alert" aria-live="polite">
+        {% for message in messages %}
+        <div class="toast-notification w-full flex items-center gap-3 px-5 py-4 bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-slate-200 transition-all duration-300"
+             data-autohide="true">
+            {% if message.tags == 'success' %}
+            <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            {% elif message.tags == 'error' %}
+            <div class="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </div>
+            {% elif message.tags == 'warning' %}
+            <div class="flex-shrink-0 w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            {% else %}
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            {% endif %}
+            <span class="text-sm font-medium text-slate-700">{{ message }}</span>
+            <button onclick="this.parentElement.remove()" class="ml-2 text-slate-400 hover:text-slate-600 transition-colors" type="button">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toasts = document.querySelectorAll('.toast-notification[data-autohide="true"]');
+            toasts.forEach(function(toast) {
+                const contentLength = (toast.textContent || '').trim().length;
+                const hideDelay = Math.min(12000, Math.max(5000, 3000 + (contentLength * 35)));
+
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-18px)';
+                requestAnimationFrame(function() {
+                    toast.style.opacity = '1';
+                    toast.style.transform = 'translateY(0)';
+                });
+
+                setTimeout(function() {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(-12px)';
+                    setTimeout(function() {
+                        toast.remove();
+                    }, 300);
+                }, hideDelay);
+            });
+        });
+    </script>
+    {% endif %}
+    {% endblock %}
+
+    {% block footer %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block base_scripts %}
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            const btn = document.getElementById('user-dropdown-btn');
+            if (dropdown) {
+                const isHidden = dropdown.classList.toggle('hidden');
+                if (btn) btn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+            }
+        }
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', function() {
+                const menu = document.getElementById('hamburger-menu');
+                if (menu) {
+                    const isHidden = menu.classList.toggle('hidden');
+                    hamburgerBtn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+                }
+            });
+        }
+
+        document.addEventListener('click', function(event) {
+            const userDropdown = document.getElementById('userDropdown');
+            const dropdown = document.getElementById('dropdownMenu');
+            const hamburgerDropdown = document.getElementById('hamburgerDropdown');
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const userBtn = document.getElementById('user-dropdown-btn');
+
+            if (userDropdown && dropdown && !userDropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+                if (userBtn) userBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            if (hamburgerDropdown && hamburgerMenu && !hamburgerDropdown.contains(event.target)) {
+                hamburgerMenu.classList.add('hidden');
+                if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const dropdown = document.getElementById('dropdownMenu');
+                const hamburgerMenu = document.getElementById('hamburger-menu');
+                const userBtn = document.getElementById('user-dropdown-btn');
+                if (dropdown && !dropdown.classList.contains('hidden')) {
+                    dropdown.classList.add('hidden');
+                    if (userBtn) userBtn.setAttribute('aria-expanded', 'false');
+                }
+                if (hamburgerMenu && !hamburgerMenu.classList.contains('hidden')) {
+                    hamburgerMenu.classList.add('hidden');
+                    if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        if (dropdownMenu) {
+            dropdownMenu.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        }
+    </script>
+    {% endblock %}
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

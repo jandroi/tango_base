@@ -1,0 +1,349 @@
+{% extends "main_home/base_landing.html" %}
+{% load static %}
+
+{% block title %}Tango | Data Solutions Boutique{% endblock %}
+{% block description %}Structured, modern data solutions. We build the structure underneath so your numbers behave reliably.{% endblock %}
+{% block canonical_url %}https://www.tangodatalabs.com/{% endblock %}
+{% block og_url %}https://www.tangodatalabs.com/{% endblock %}
+
+{% block content %}
+<section class="relative min-h-[60vh] flex items-center overflow-hidden bg-slate-900">
+    <img
+        src="{% static 'main_home/img/tango_sea_background.jpg' %}"
+        alt="Tango sea background"
+        class="absolute inset-0 h-full w-full object-cover"
+    >
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 text-center">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            Enable your data
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-200 mb-10">
+            We build data landscapes where KPIs are trusted.
+        </p>
+    </div>
+</section>
+
+<section class="bg-white">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="flex items-center py-40 lg:py-56 px-6 lg:px-16">
+            <div class="max-w-xl lg:ml-auto lg:mr-12">
+                <p class="text-xs uppercase tracking-[0.22em] text-slate-500 mb-4">
+                    The pattern we see
+                </p>
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900 leading-tight">
+                    Decisions need infrastructure.
+                </h2>
+            </div>
+        </div>
+
+        <div class="flex items-center bg-gray-50 py-40 lg:py-56 px-6 lg:px-16">
+            <div class="max-w-xl">
+                <div class="space-y-4 text-lg text-slate-700 leading-relaxed">
+                    <p>
+                        Without stable numbers, clear definitions, and explicit ownership, data cannot support decisions.
+                    </p>
+                    <p>
+                        This is what turns data into something that can actually be used to decide.
+                    </p>
+                </div>
+
+                <p class="mt-8 text-lg md:text-xl font-medium leading-relaxed text-slate-900">
+                    We build the structure behind decisions
+                </p>
+
+                <a href="{% url 'what_we_do' %}" class="mt-6 text-tango-accent hover:text-tango-medium font-medium inline-flex items-center">
+                    What we do
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-gray-50">
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="relative bg-cover bg-center bg-no-repeat"
+             style="background-image: url('{% static "main_home/img/dock_background.jpg" %}');">
+            <div class="absolute inset-0" style="background-color: rgba(59, 66, 86, 0.62);"></div>
+
+            <div class="relative flex items-center py-40 lg:py-56 px-6 lg:px-16">
+                <div class="max-w-xl lg:ml-auto lg:mr-12">
+                    <h2 class="text-3xl md:text-4xl font-light text-white">How we work</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center bg-white py-40 lg:py-56 px-6 lg:px-16">
+            <div class="max-w-xl space-y-8">
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-tango-accent/10 flex items-center justify-center">
+                        <span class="text-lg font-semibold text-tango-accent">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Establish meaning</h3>
+                        <p class="text-slate-600">Agree on definitions and map how numbers are produced today.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-tango-accent/10 flex items-center justify-center">
+                        <span class="text-lg font-semibold text-tango-accent">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Build the data layer</h3>
+                        <p class="text-slate-600">Implement the rules, models, and metrics in one place.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-tango-accent/10 flex items-center justify-center">
+                        <span class="text-lg font-semibold text-tango-accent">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Stable delivery</h3>
+                        <p class="text-slate-600">Ship reporting that stays consistent as inputs change.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-40 lg:py-56">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="relative">
+            <div class="flex items-center justify-between">
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 mx-auto mb-3 rounded-lg bg-slate-100 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm font-medium text-slate-700">Inputs</p>
+                </div>
+
+                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 mx-auto mb-3 rounded-lg bg-slate-100 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm font-medium text-slate-700">Rules</p>
+                </div>
+
+                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 mx-auto mb-3 rounded-lg bg-slate-100 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm font-medium text-slate-700">Models</p>
+                </div>
+
+                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 mx-auto mb-3 rounded-lg bg-slate-100 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm font-medium text-slate-700">Metrics</p>
+                </div>
+
+                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 mx-auto mb-3 rounded-lg bg-slate-100 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm font-medium text-slate-700">Outputs</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-lg text-slate-600 mt-10 mb-6">
+            One path from inputs to metrics-used consistently across teams.
+        </p>
+
+        <div class="text-center">
+            <a href="{% url 'how_it_works' %}" class="text-tango-accent hover:text-tango-medium font-medium inline-flex items-center">
+                See how it works
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-40 lg:py-56 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 class="text-3xl font-light text-center text-slate-900 mb-4">Where this work shows up</h2>
+        <p class="text-center text-lg text-slate-600 mb-12 max-w-4xl mx-auto">
+            Most often, this pattern appears in organizations with multi-source operations and recurring reporting cycles.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-tango-accent/10 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-tango-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Financial Services</h3>
+                        <p class="text-slate-600">Complex transactions, regulatory reporting, and reconciliation flows that demand precision and auditability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-tango-accent/10 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-tango-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Logistics, Procurement & Tendering</h3>
+                        <p class="text-slate-600">Multi-source procurement data, vendor analytics, and tendering processes that need structured comparison.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-tango-accent/10 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-tango-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Construction</h3>
+                        <p class="text-slate-600">Project cost tracking, resource allocation, and milestone reporting across multiple sites and stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-tango-accent/10 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-tango-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-2">Energy</h3>
+                        <p class="text-slate-600">Production metrics, consumption patterns, and regulatory compliance data requiring reliable aggregation and reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="about" class="relative py-48 lg:py-64 bg-cover bg-center bg-no-repeat"
+         style="background-image: url('{% static "main_home/img/ahmed-nishaath-mar_picado.jpg" %}');">
+    <div class="absolute inset-0" style="background-color: rgba(59, 66, 86, 0.78);"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-8">
+        <h2 class="text-3xl font-light text-center text-white mb-12">About Tango</h2>
+
+        <div class="space-y-6 text-lg text-gray-200 leading-relaxed">
+            <p>
+                Tango is a boutique data consultancy focused on building reliable, structured data systems for organizations that need their numbers to work.
+            </p>
+
+            <p>
+                We work with teams facing the same challenge: data that exists but doesn't behave reliably across tools, teams, and reports. Whether it's financial services reconciling complex transactions, logistics operations managing procurement flows, or construction firms tracking project metrics-the pattern is the same.
+            </p>
+
+            <p>
+                Our approach is straightforward: align your data sources, build clean structure underneath, and deliver outputs you can trust. No over-engineering. No generic dashboards. Just the backbone your organization needs to make decisions with confidence.
+            </p>
+
+            <div class="pt-8 border-t border-white/20 mt-10">
+                <h3 class="text-xl font-semibold text-white mb-4">What makes us different</h3>
+                <ul class="space-y-3 text-gray-200">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-tango-light mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>We build structure, not just reports-systems that last beyond the engagement</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-tango-light mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>We work with your existing tools and teams, not against them</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-tango-light mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>We focus on industries where data complexity is the norm, not the exception</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="py-48 lg:py-64 bg-tango-light/25">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-light text-slate-900 mb-10">
+            Let's build something that lasts.
+        </h2>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'contact' %}" class="px-8 py-3 text-base font-medium text-white bg-tango-dark rounded-full hover:bg-tango-medium transition-colors">
+                Contact Tango
+            </a>
+            <a href="{% url 'what_we_do' %}" class="px-8 py-3 text-base font-medium text-tango-dark border border-tango-dark rounded-full hover:bg-tango-dark hover:text-white transition-colors">
+                What We Do
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+{% endblock %}

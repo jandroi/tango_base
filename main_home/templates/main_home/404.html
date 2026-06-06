@@ -1,0 +1,38 @@
+{% extends "main_home/base.html" %}
+{% load static %}
+
+{% block title %}Lost at Sea{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5" style="max-width: 700px;">
+
+    <h1 class="display-4 fw-bold mb-3">Oops... you drifted off route.</h1>
+
+    <p class="lead text-muted mb-4">
+        We looked everywhere.  
+        Behind the minibar. Under the pool lounger.  
+        Even in that one suspicious maintenance closet.  
+        <br><br>
+        That page doesn’t exist... for now.
+    </p>
+
+    <div class="my-4">
+        <img src="{% static 'main_branding/img/404_lost_at_sea.png' %}" 
+             alt="Lost at Sea"
+             style="max-width: 70%; height: auto; opacity: 0.9;">
+    </div>
+
+    <p class="text-muted mb-4">
+        Let’s get you back somewhere safe.
+    </p>
+
+    <a href="/" class="btn btn-primary px-4 py-2" style="border-radius: 12px;">
+        Return to Safety
+    </a>
+
+    <p class="mt-4 small text-muted">
+        (If you think something should be here, tell the person who built this.)
+    </p>
+
+</div>
+{% endblock %}

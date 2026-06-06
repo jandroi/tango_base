@@ -1,0 +1,97 @@
+{% extends "main_home/base.html" %}
+
+{% block title %}Tango | Data Solutions Boutique{% endblock %}
+{% block description %}Structured, modern data solutions. We build the structure underneath so your numbers behave reliably.{% endblock %}
+{% block og_title %}Tango Data Solutions Boutique{% endblock %}
+{% block og_description %}Structured, modern data solutions. We build the structure underneath so your numbers behave reliably.{% endblock %}
+{% block og_image %}https://www.tangodatalabs.com/static/main_home/img/tango_sea_background.jpg{% endblock %}
+{% block og_image_secure %}https://www.tangodatalabs.com/static/main_home/img/tango_sea_background.jpg{% endblock %}
+{% block og_image_alt %}Tango Data Solutions Boutique{% endblock %}
+{% block twitter_title %}Tango Data Solutions Boutique{% endblock %}
+{% block twitter_description %}Structured, modern data solutions. We build the structure underneath so your numbers behave reliably.{% endblock %}
+{% block twitter_image %}https://www.tangodatalabs.com/static/main_home/img/tango_sea_background.jpg{% endblock %}
+{% block body_class %}bg-white text-slate-900 antialiased{% endblock %}
+
+{% block navbar %}
+<header class="w-full bg-gray-900/70 text-white fixed top-0 left-0 z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+        <a href="/" class="flex items-baseline gap-3 hover:opacity-90">
+            <span class="font-semibold tracking-wide">Tango</span>
+            <span class="text-xs opacity-80 tracking-[0.18em]">Data Solutions Boutique</span>
+        </a>
+        <nav class="hidden sm:flex gap-6 text-sm">
+            <a href="{% url 'what_we_do' %}" class="hover:text-gray-200">What We Do</a>
+            <a href="{% url 'how_it_works' %}" class="hover:text-gray-200">How It Works</a>
+            <a href="{% url 'about' %}" class="hover:text-gray-200">About</a>
+            <a href="{% url 'contact' %}" class="hover:text-gray-200">Contact</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'main_distributor' %}" class="hover:text-gray-200">Main</a>
+            {% else %}
+            <a href="/users/login/" class="hover:text-gray-200">Login</a>
+            {% endif %}
+        </nav>
+        <button id="landing-hamburger-btn" class="sm:hidden p-2 hover:opacity-90" type="button" aria-expanded="false">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div id="landing-mobile-menu" class="hidden sm:hidden bg-gray-900/95 px-4 pb-4">
+        <a href="{% url 'what_we_do' %}" class="block py-2 text-sm hover:text-gray-200">What We Do</a>
+        <a href="{% url 'how_it_works' %}" class="block py-2 text-sm hover:text-gray-200">How It Works</a>
+        <a href="{% url 'about' %}" class="block py-2 text-sm hover:text-gray-200">About</a>
+        <a href="{% url 'contact' %}" class="block py-2 text-sm hover:text-gray-200">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'main_distributor' %}" class="block py-2 text-sm hover:text-gray-200">Main</a>
+        {% else %}
+        <a href="/users/login/" class="block py-2 text-sm hover:text-gray-200">Login</a>
+        {% endif %}
+    </div>
+</header>
+<div class="h-14"></div>
+<script>
+    (function() {
+        var btn = document.getElementById('landing-hamburger-btn');
+        var menu = document.getElementById('landing-mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', function() {
+                var isHidden = menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    })();
+</script>
+{% endblock %}
+
+{% block page_body %}
+{% block content %}{% endblock %}
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-tango-light py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="text-sm text-slate-600 mb-4 md:mb-0">
+                &copy; {% now "Y" %} Tango Data Solutions Boutique
+            </div>
+            <div class="flex space-x-6 text-sm text-slate-600">
+                <a href="{% url 'what_we_do' %}" class="hover:text-tango-dark">What We Do</a>
+                <a href="{% url 'how_it_works' %}" class="hover:text-tango-dark">How It Works</a>
+                <a href="{% url 'about' %}" class="hover:text-tango-dark">About</a>
+                <a href="{% url 'contact' %}" class="hover:text-tango-dark">Contact</a>
+                {% if user.is_authenticated %}
+                <a href="/users/profile/" class="hover:text-tango-dark">Profile</a>
+                {% else %}
+                <a href="/users/login/" class="hover:text-tango-dark">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

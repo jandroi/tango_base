@@ -1,0 +1,187 @@
+{% extends 'main_home/base_landing.html' %}
+{% load static %}
+
+{% block title %}About | Tango{% endblock %}
+{% block description %}Tango is a data solutions boutique. We focus on the structure underneath decisions — definitions, data flows, and rules.{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="relative py-56 lg:py-72 bg-cover bg-center bg-no-repeat"
+             style="background-color: #3B4256; background-image: linear-gradient(to bottom, rgba(59, 66, 86, 0.70), rgba(59, 66, 86, 0.60)), url('{% static "main_home/img/ecrinn-burgazli_helm.jpg" %}');">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                About Tango
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
+                Giving the right number at the right time
+            </p>
+        </div>
+    </section>
+
+    <!-- Opening Frame -->
+    <section class="py-32 lg:py-48 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl lg:ml-[8%]">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-8">
+                    Who we are
+                </p>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-medium text-tango-dark leading-snug mb-8">
+                    Tango is a data solutions boutique.
+                </h2>
+                <div class="space-y-6 text-base lg:text-lg text-slate-600 leading-relaxed">
+                    <p>
+                        We focus on the structure underneath decisions — definitions, data flows, and rules — so numbers behave consistently across tools, teams, and time.
+                    </p>
+                    <p>
+                        We don't sell dashboards, platforms, or generic analytics. We work where decisions start breaking because the underlying data no longer holds.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Tango Exists -->
+    <section class="py-32 lg:py-48 bg-stone-100/70">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-32">
+                        <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug">
+                            Why Tango exists
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-8">
+                    <div class="border-l border-slate-300 pl-8 lg:pl-12">
+                        <div class="space-y-6 text-base lg:text-lg text-slate-600 leading-relaxed">
+                            <p>
+                                Across industries, the pattern is the same.
+                            </p>
+                            <p>
+                                Numbers exist, reports are produced, and decisions are made — yet confidence is missing. Metrics change between meetings. Answers depend on who prepared them. Explanations arrive too late.
+                            </p>
+                            <p>
+                                Over time, organizations compensate with workarounds: spreadsheets, manual checks, and personal logic. These solutions work — until they don't.
+                            </p>
+                            <p class="text-lg lg:text-xl font-medium text-tango-dark pt-4">
+                                Tango exists to replace this fragility with structure.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How Tango Thinks -->
+    <section class="py-32 lg:py-48 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-32">
+                        <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug mb-6">
+                            How Tango thinks
+                        </h2>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            We believe decision quality depends less on tools, and more on structure.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-8">
+                    <p class="text-base lg:text-lg text-slate-600 leading-relaxed mb-10">
+                        Reliable decisions require:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="bg-tango-dark/5 rounded-xl p-6">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Clear definitions that are shared
+                            </p>
+                        </div>
+                        <div class="bg-tango-dark/5 rounded-xl p-6">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Inputs that are known and traceable
+                            </p>
+                        </div>
+                        <div class="bg-tango-dark/5 rounded-xl p-6">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Rules that exist once and are reused
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-slate-200">
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            When these elements are explicit, analytics becomes predictable.
+                        </p>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed mt-3">
+                            When they are implicit, even good teams produce unstable results.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How Tango Works with Clients -->
+    <section class="py-32 lg:py-48 bg-stone-50/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-32">
+                        <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug">
+                            How Tango works with clients
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-8">
+                    <div class="space-y-6 text-base lg:text-lg text-slate-600 leading-relaxed">
+                        <p>
+                            Tango works closely with internal teams.
+                        </p>
+                        <p>
+                            We don't replace existing systems unless necessary, and we don't impose frameworks for their own sake. Our role is to clarify, stabilize, and formalize what already exists — then help teams use it consistently.
+                        </p>
+                        <p>
+                            Engagements are structured, scoped, and focused on concrete outcomes: fewer disputes, clearer answers, and decisions that don't need to be re-justified each cycle.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative py-40 lg:py-56 bg-cover bg-center bg-no-repeat"
+             style="background-image: url('{% static "main_home/img/tango_sea_background.jpg" %}');">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(59, 66, 86, 0.55), rgba(59, 66, 86, 0.70));"></div>
+        <div class="relative max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-light text-white mb-10">
+                Questions about working with Tango?
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{% url 'contact' %}" class="px-8 py-3 text-base font-medium text-tango-dark bg-white rounded-full hover:bg-gray-100 transition-colors">
+                    Contact Tango
+                </a>
+                <a href="{% url 'what_we_do' %}" class="px-8 py-3 text-base font-medium text-white border border-white rounded-full hover:bg-white hover:text-tango-dark transition-colors">
+                    What We Do
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

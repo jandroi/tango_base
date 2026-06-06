@@ -1,0 +1,6 @@
+property_id,brand,property_code,property_name,property_image,created_at,updated_at,created_by,updated_by
+1,2,H01,Hotel Ejemplo,,2026-02-23T19:17:32.957205+00:00,2026-02-28T10:32:49.026537+00:00,1,1
+2,1,HZC,Hyatt Ziva Cancun,property_images/hyattzivacancun.jpg,2026-02-23T20:21:40.587863+00:00,2026-02-27T21:08:15.821863+00:00,,1
+3,2,H03,Hyatt Zilara,,2026-02-23T20:21:40.587916+00:00,2026-02-28T10:15:02.411674+00:00,,1
+4,1,HZV,Hyatt Ziva Vallarta,property_images/property_default_1Se62Eb.jpg,2026-02-28T21:16:07.053648+00:00,2026-02-28T21:22:54.763795+00:00,1,1
+5,1,HZCC,Hyatt Ziva Cap Cana,property_images/property_default.jpg,2026-02-28T21:21:58.723369+00:00,2026-02-28T21:21:58.723405+00:00,1,1

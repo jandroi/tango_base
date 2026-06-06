@@ -1,0 +1,148 @@
+{% extends 'main_home/base.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-5 py-10">
+    <div class="mb-10">
+        <h1 class="text-4xl font-semibold tracking-tight text-slate-900">Account Settings</h1>
+        <p class="text-[15px] text-slate-500 leading-relaxed mt-2">Manage your profile information</p>
+    </div>
+
+    {% if messages %}
+        <div class="mb-6 space-y-2">
+            {% for message in messages %}
+                <div
+                    class="text-sm rounded-full px-4 py-2.5 border
+                    {% if message.tags == 'success' %}
+                        bg-emerald-50 text-emerald-800 border-emerald-200
+                    {% elif message.tags == 'error' or message.tags == 'danger' %}
+                        bg-red-50 text-red-800 border-red-200
+                    {% elif message.tags == 'warning' %}
+                        bg-amber-50 text-amber-800 border-amber-200
+                    {% else %}
+                        bg-blue-50 text-blue-800 border-blue-200
+                    {% endif %}
+                    ">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="space-y-6">
+            <!-- Profile Picture Section -->
+            <div class="bg-white rounded-3xl border border-slate-700/60 shadow-[0_8px_30px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div class="bg-gradient-to-r from-[#4F4759]/5 to-[#7079A0]/5 px-6 py-5 border-b border-white/10">
+                    <h2 class="text-xl font-medium text-slate-900 tracking-tight">Profile Picture</h2>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-6">
+                        {% if user.profile_picture %}
+                            <img id="profilePicturePreview" src="{{ user.profile_picture.url }}" alt="Profile Picture" class="w-32 h-32 rounded-full object-cover border-2 border-slate-200" />
+                        {% else %}
+                            <div id="profilePicturePreview" class="w-32 h-32 rounded-full bg-[#8097D1]/10 flex items-center justify-center border-2 border-[#8097D1]/20">
+                                <span class="text-4xl font-semibold text-[#4F4759]">{{ user.first_name|default:user.email|first|upper }}</span>
+                            </div>
+                        {% endif %}
+                        <input type="file" name="profile_picture" id="profilePictureInput" class="text-sm text-slate-500 file:mr-4 file:rounded-full file:px-5 file:py-2.5 file:text-sm file:font-medium file:bg-slate-900/90 file:border file:border-slate-600/60 file:text-white hover:file:bg-slate-900 hover:file:border-slate-400/60 file:transition-all file:duration-200" style="display: none;" disabled onchange="previewProfilePicture(event)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Details Section -->
+            <div class="bg-white rounded-3xl border border-slate-700/60 shadow-[0_8px_30px_rgba(0,0,0,0.12)] overflow-hidden">
+                <div class="bg-gradient-to-r from-[#4F4759]/5 to-[#7079A0]/5 px-6 py-5 border-b border-white/10">
+                    <h2 class="text-xl font-medium text-slate-900 tracking-tight">Account Details</h2>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                            <input type="text" name="first_name" class="editable block w-full rounded-full border border-slate-700/60 px-5 py-3 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8097D1]/20 focus:border-[#8097D1] text-sm transition-all" placeholder="First Name" value="{{ user.first_name }}" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                            <input type="text" name="last_name" class="editable block w-full rounded-full border border-slate-700/60 px-5 py-3 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8097D1]/20 focus:border-[#8097D1] text-sm transition-all" placeholder="Last Name" value="{{ user.last_name }}" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                        <input type="email" name="email" class="editable block w-full rounded-full border border-slate-700/60 px-5 py-3 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8097D1]/20 focus:border-[#8097D1] text-sm transition-all" placeholder="Email Address" value="{{ user.email }}" disabled>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Country</label>
+                            <input type="text" name="country" class="editable block w-full rounded-full border border-slate-700/60 px-5 py-3 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8097D1]/20 focus:border-[#8097D1] text-sm transition-all" placeholder="Country" value="{{ user.country }}" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Language</label>
+                            <input type="text" name="language" class="editable block w-full rounded-full border border-slate-700/60 px-5 py-3 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8097D1]/20 focus:border-[#8097D1] text-sm transition-all" placeholder="Language" value="{{ user.language }}" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex gap-3">
+            <button type="button" id="editButton" class="rounded-full px-5 py-2.5 text-sm font-medium bg-slate-900/90 border border-slate-600/60 text-white hover:bg-slate-900 hover:border-slate-400/60 hover:-translate-y-[1px] hover:shadow-lg transition-all duration-200" onclick="enterEditMode()">Edit</button>
+            <div id="saveCancelButtons" class="flex gap-3" style="display: none;">
+                <button type="submit" class="rounded-full px-5 py-2.5 text-sm font-medium bg-emerald-600 border border-emerald-500 text-white hover:bg-emerald-700 hover:-translate-y-[1px] hover:shadow-lg transition-all duration-200">Save</button>
+                <a href="{% url 'profile' %}" class="rounded-full px-5 py-2.5 text-sm font-medium bg-slate-200 border border-slate-300 text-slate-700 hover:bg-slate-300 hover:-translate-y-[1px] transition-all duration-200">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var originalValues = {};
+
+    function enterEditMode() {
+        const formFields = document.querySelectorAll('.editable');
+        const editButton = document.getElementById('editButton');
+        const saveCancelButtons = document.getElementById('saveCancelButtons');
+        const profilePictureInput = document.getElementById('profilePictureInput');
+
+        originalValues = {};
+        formFields.forEach(field => {
+            originalValues[field.name] = field.value;
+            field.disabled = false;
+        });
+
+        editButton.style.display = 'none';
+        saveCancelButtons.style.display = 'flex';
+        profilePictureInput.style.display = 'block';
+        profilePictureInput.disabled = false;
+    }
+
+    function cancelEditMode() {
+        const formFields = document.querySelectorAll('.editable');
+        const editButton = document.getElementById('editButton');
+        const saveCancelButtons = document.getElementById('saveCancelButtons');
+        const profilePictureInput = document.getElementById('profilePictureInput');
+
+        formFields.forEach(field => {
+            if (field.name in originalValues) {
+                field.value = originalValues[field.name];
+            }
+            field.disabled = true;
+        });
+
+        editButton.style.display = 'inline-block';
+        saveCancelButtons.style.display = 'none';
+        profilePictureInput.style.display = 'none';
+        profilePictureInput.disabled = true;
+    }
+
+    function previewProfilePicture(event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const imgElement = document.getElementById('profilePicturePreview');
+            imgElement.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+{% endblock %}

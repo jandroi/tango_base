@@ -1,0 +1,318 @@
+{% extends 'main_home/base_landing.html' %}
+
+{% block title %}How It Works | Tango{% endblock %}
+{% block description %}Structure behind decisions — so the same question produces the same answer.{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="relative py-56 lg:py-72 bg-cover bg-center bg-no-repeat"
+             style="background-color: #3B4256; background-image: linear-gradient(to bottom, rgba(59, 66, 86, 0.70), rgba(59, 66, 86, 0.60)), url('{% static "main_home/img/james-coleman-unsplash-winch.jpg" %}');">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                How It Works
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
+                Structure behind decisions — so the same question produces the same answer.
+            </p>
+        </div>
+    </section>
+
+    <!-- The Engagement Path Section -->
+    <section class="py-32 lg:py-48 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
+                    Engagement
+                </p>
+                <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug mb-6">
+                    The engagement path
+                </h2>
+                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                    Most clients walk a ladder. You can enter at any rung.
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <ol class="max-w-4xl mx-auto">
+
+                <!-- 01 Assessment -->
+                <li class="relative flex gap-6 pb-12">
+                    <div class="absolute left-6 top-12 bottom-0 w-px bg-slate-200" aria-hidden="true"></div>
+                    <div class="relative z-10 w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 text-sm tracking-wide flex-shrink-0">01</div>
+                    <div class="flex-1 pt-2.5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                            Assessment
+                        </h3>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            A gap analysis on your data, decisions, and reporting — measuring where you are against where you should be.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- 02 Blueprint -->
+                <li class="relative flex gap-6 pb-12">
+                    <div class="absolute left-6 top-12 bottom-0 w-px bg-slate-200" aria-hidden="true"></div>
+                    <div class="relative z-10 w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 text-sm tracking-wide flex-shrink-0">02</div>
+                    <div class="flex-1 pt-2.5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                            Blueprint
+                        </h3>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            The design of the target data structure — the hierarchy, definitions, and rules that close the gaps surfaced in Assessment.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- 03 Implementation -->
+                <li class="relative flex gap-6 pb-12">
+                    <div class="absolute left-6 top-12 bottom-0 w-px bg-slate-200" aria-hidden="true"></div>
+                    <div class="relative z-10 w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 text-sm tracking-wide flex-shrink-0">03</div>
+                    <div class="flex-1 pt-2.5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                            Implementation
+                        </h3>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            Executing the Blueprint — turning the target structure into a working system. Delivery mode scoped to your team's capacity at engagement start.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- 04 Fractional CDO -->
+                <li class="relative flex gap-6 pb-12">
+                    <div class="absolute left-6 top-12 bottom-0 w-px bg-slate-200" aria-hidden="true"></div>
+                    <div class="relative z-10 w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 text-sm tracking-wide flex-shrink-0">04</div>
+                    <div class="flex-1 pt-2.5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                            Fractional CDO
+                        </h3>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            Monthly custodianship of the data structure — part-time, multi-month, covering strategy through ongoing operations as your organization grows.
+                        </p>
+                    </div>
+                </li>
+
+                <!-- 05 Training (last rung — no connector below, no bottom padding) -->
+                <li class="relative flex gap-6">
+                    <div class="relative z-10 w-12 h-12 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-500 text-sm tracking-wide flex-shrink-0">05</div>
+                    <div class="flex-1 pt-2.5">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">
+                            Training
+                        </h3>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            A focused engagement to transfer Tango's method to your team — so they can operate, extend, and maintain the structure without ongoing Tango dependency.
+                        </p>
+                    </div>
+                </li>
+
+            </ol>
+
+        </div>
+    </section>
+
+    <!-- What We Stabilize First Section -->
+    <section class="py-32 lg:py-48 bg-stone-100/70">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="max-w-2xl mb-16">
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
+                    Foundation
+                </p>
+                <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug mb-6">
+                    What we stabilize first
+                </h2>
+                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                    Before results change, the structure underneath decisions is made explicit.
+                </p>
+                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">    
+                    Unreliable decisions usually come from definitions, inputs, and rules that exist informally or implicitly.
+                </p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+                <!-- Definitions Card -->
+                <div class="bg-tango-dark/5 rounded-xl p-8">
+                    <span class="text-xs text-slate-400 tracking-wide">01</span>
+                    <h3 class="text-lg font-semibold text-slate-900 mt-2 mb-4">
+                        Definitions
+                    </h3>
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        We agree on what key numbers mean and how they should come to be.
+                    </p>
+                    <p class="text-base text-slate-600 leading-relaxed mt-3">
+                        This removes ambiguity and identifies the sources before any reporting takes place.
+                    </p>
+                </div>
+
+                <!-- Inputs Card -->
+                <div class="bg-tango-dark/5 rounded-xl p-8">
+                    <span class="text-xs text-slate-400 tracking-wide">02</span>
+                    <h3 class="text-lg font-semibold text-slate-900 mt-2 mb-4">
+                        Inputs
+                    </h3>
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        We identify which data points are required to produce each number, including inputs that are missing, assumed, or currently handled manually.
+                    </p>
+                </div>
+
+                <!-- Rules Card -->
+                <div class="bg-tango-dark/5 rounded-xl p-8">
+                    <span class="text-xs text-slate-400 tracking-wide">03</span>
+                    <h3 class="text-lg font-semibold text-slate-900 mt-2 mb-4">
+                        Rules
+                    </h3>
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        We centralize the logic that turns inputs into metrics, so it exists once and is reused consistently, rather than recreated in each spreadsheet or report.
+                    </p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Two-column Section -->
+    <section class="py-32 lg:py-48 bg-stone-50/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+
+                <!-- Left Column -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-32">
+                        <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
+                            In practice
+                        </p>
+                        <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug">
+                            What changes in practice
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-8">
+                    <div class="border-l border-slate-200 pl-8 lg:pl-12">
+                        <h3 class="text-xl font-medium text-tango-dark mb-12">
+                            Stable decision inputs
+                        </h3>
+
+                        <div class="space-y-12">
+                            <!-- Point 1 -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900 mb-2">
+                                    Consistent numbers
+                                </h4>
+                                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                                    Key figures stay the same across meetings, tools, and reports.
+                                </p>
+                            </div>
+
+                            <!-- Point 2 -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900 mb-2">
+                                    Explicit definitions
+                                </h4>
+                                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                                    Metrics, rules, and assumptions are documented and shared, not inferred from context or memory.
+                                </p>
+                            </div>
+
+                            <!-- Point 3 -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900 mb-2">
+                                    Traceable answers
+                                </h4>
+                                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                                    When a number is questioned, there is a path back to the source: what was used, how it was calculated, and why.
+                                </p>
+                            </div>
+
+                            <!-- Point 4 -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900 mb-2">
+                                    Reduced manual dependency
+                                </h4>
+                                <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                                    Decisions stop relying on individual files, personal knowledge, or whoever prepared the last version.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Where This Applies Section -->
+    <section class="py-32 lg:py-48 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+                <!-- Left Column -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-32">
+                        <h2 class="text-2xl md:text-3xl font-medium text-tango-dark leading-snug mb-4">
+                            Where this applies
+                        </h2>
+                        <p class="text-base lg:text-lg text-slate-600 leading-relaxed">
+                            This work matters most when:
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="border-l-2 border-tango-accent/30 pl-6 py-2">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Decisions are repeated, not one-off
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-tango-accent/30 pl-6 py-2">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Numbers are questioned, not just reported
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-tango-accent/30 pl-6 py-2">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                Manual steps exist but no one fully owns them
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-tango-accent/30 pl-6 py-2">
+                            <p class="text-base lg:text-lg text-slate-700 leading-relaxed">
+                                The cost of being wrong is higher than the cost of being slower
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="relative py-40 lg:py-56 bg-cover bg-center bg-no-repeat"
+             style="background-image: url('{% static "main_home/img/tango_sea_background.jpg" %}');">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(59, 66, 86, 0.55), rgba(59, 66, 86, 0.70));"></div>
+        <div class="relative max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-light text-white mb-10">
+                Questions about how this applies to your organization?
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{% url 'contact' %}" class="px-8 py-3 text-base font-medium text-tango-dark bg-white rounded-full hover:bg-gray-100 transition-colors">
+                    Contact Tango
+                </a>
+                <a href="{% url 'about' %}" class="px-8 py-3 text-base font-medium text-white border border-white rounded-full hover:bg-white hover:text-tango-dark transition-colors">
+                    About Us
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,33 @@
+﻿{% extends "main_home/base.html" %}
+
+{% block title %}Export Job | Tango{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-2 py-4">
+    <nav class="mb-4" aria-label="breadcrumb">
+        <ol class="flex space-x-2 text-sm text-slate-500">
+            <li><a href="{% url 'data_management:dashboard' %}" class="hover:text-slate-700">Data Management</a></li>
+            <li class="before:content-['/'] before:mx-2 text-slate-700 font-medium">Export Job Detail</li>
+        </ol>
+    </nav>
+
+    <div class="mb-4">
+        <h1 class="text-2xl font-semibold">Export Job</h1>
+        <p class="text-sm text-slate-600">{{ job.job_uuid }}</p>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-3xl shadow-sm p-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+            <div><strong>Status:</strong> {{ job.get_status_display }}</div>
+            <div><strong>Format:</strong> {{ job.get_format_display }}</div>
+            <div><strong>Created:</strong> {{ job.created_at|date:"Y-m-d H:i:s" }}</div>
+            <div class="md:col-span-3"><strong>Output Folder:</strong> {{ job.output_folder }}</div>
+        </div>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-3xl shadow-sm p-4">
+        <h2 class="text-lg font-semibold mb-2">Summary</h2>
+        <pre class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs overflow-auto">{{ job.summary_json }}</pre>
+    </div>
+</div>
+{% endblock %}
