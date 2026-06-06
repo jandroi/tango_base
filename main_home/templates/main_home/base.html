@@ -10,8 +10,9 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
     <meta property="og:site_name" content="Tango Data">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
-    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://www.tangodatalabs.com{% static 'main_home/img/social_preview.jpg' %}{% endblock %}">
+    <meta property="og:image:secure_url" content="{% block og_image_secure %}https://www.tangodatalabs.com{% static 'main_home/img/social_preview.jpg' %}{% endblock %}">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% block og_image_alt %}Tango Data Solutions Boutique{% endblock %}">
@@ -19,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}Tango Data Solutions Boutique{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}Premium data solutions and hospitality management platform.{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'main_home/img/logo_large.png' %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://www.tangodatalabs.com{% static 'main_home/img/social_preview.jpg' %}{% endblock %}">
 
     <meta name="description" content="{% block description %}Premium data solutions and hospitality management platform. Streamline your brand standards and property management with Tango.{% endblock %}">
     <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">

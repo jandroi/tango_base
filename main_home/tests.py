@@ -32,6 +32,17 @@ class HomeViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'main_home/contact.html')
 
+    def test_public_pages_include_social_preview_metadata(self):
+        preview_url = 'https://www.tangodatalabs.com/static/main_home/img/social_preview.jpg'
+
+        for page_name in ('home', 'what_we_do', 'how_it_works', 'about', 'contact'):
+            with self.subTest(page_name=page_name):
+                response = self.client.get(reverse(page_name))
+                self.assertContains(response, f'<meta property="og:image" content="{preview_url}">')
+                self.assertContains(response, '<meta property="og:image:type" content="image/jpeg">')
+                self.assertContains(response, '<meta property="og:image:width" content="1200">')
+                self.assertContains(response, '<meta property="og:image:height" content="630">')
+
     def test_home_authenticated_nav_shows_main_not_dashboard(self):
         user = MainUser.objects.create_user(email='nav@example.com', password='TestPass123!')
         self.client.login(username='nav@example.com', password='TestPass123!')
