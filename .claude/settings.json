@@ -1,0 +1,88 @@
+{
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Bash(rm:*)",
+      "PowerShell(Remove-Item:*)",
+      "Bash(git:*)",
+      "PowerShell(git:*)",
+      "Bash(conda run -n tango_base python manage.py *)",
+      "PowerShell(conda run -n tango_base python manage.py *)"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(rsync:*)",
+      "Bash(ftp:*)",
+      "Bash(sftp:*)",
+      "Bash(gh:*)",
+      "Bash(sendmail:*)",
+      "Bash(mail:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf C:*)",
+      "Bash(rm -rf $:*)",
+      "Bash(python -c:*)",
+      "Bash(python3 -c:*)",
+      "Bash(py -c:*)",
+      "Bash(conda run -n tango_base python manage.py shell:*)",
+      "PowerShell(conda run -n tango_base python manage.py shell:*)",
+      "Bash(python manage.py shell:*)",
+      "PowerShell(python manage.py shell:*)",
+      "PowerShell(Invoke-WebRequest:*)",
+      "PowerShell(Invoke-RestMethod:*)",
+      "PowerShell(iwr:*)",
+      "PowerShell(irm:*)",
+      "PowerShell(curl:*)",
+      "PowerShell(wget:*)",
+      "PowerShell(ssh:*)",
+      "PowerShell(scp:*)",
+      "Write(*.env)",
+      "Write(*.env.*)",
+      "Write(*.pem)",
+      "Write(*.key)",
+      "Write(*credentials*)",
+      "Write(*secrets*)",
+      "Edit(*.env)",
+      "Edit(*.env.*)",
+      "Edit(*.pem)",
+      "Edit(*.key)",
+      "Edit(*credentials*)",
+      "Edit(*secrets*)"
+    ],
+    "ask": [
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(npm install:*)",
+      "Bash(python manage.py flush:*)",
+      "Bash(conda run -n tango_base python manage.py flush:*)",
+      "PowerShell(python manage.py flush:*)",
+      "PowerShell(conda run -n tango_base python manage.py flush:*)"
+    ]
+  },
+  "sandbox": {
+    "enabled": false,
+    "failIfUnavailable": false,
+    "network": {
+      "allowedDomains": [
+        "pypi.org",
+        "files.pythonhosted.org",
+        "repo.anaconda.com",
+        "conda.anaconda.org",
+        "github.com",
+        "*.githubusercontent.com",
+        "api.anthropic.com"
+      ]
+    },
+    "filesystem": {
+      "denyRead": [
+        "./.env",
+        "./.env.*",
+        "**/*.pem",
+        "**/*.key"
+      ]
+    }
+  }
+}
