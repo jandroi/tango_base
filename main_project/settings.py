@@ -154,13 +154,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/main_media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'main_media')
 
-# File Upload Settings (100MB max)
+# File upload caps (100MB) — room for CSV / media uploads in feature apps
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB
 
-# Inventory receive forms POST 2 fields per PO line item; large POs
-# (hundreds of items) exceed Django's default 1000-field cap.
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 
 # Mailing Configuration

@@ -47,7 +47,7 @@ urlpatterns = [
 
 - `AUTH_USER_MODEL = 'main_users.MainUser'`
 - Email is the unique identifier. There is no username field.
-- `LOGIN_URL = '/users/login/'`, `LOGIN_REDIRECT_URL = '/'`, `LOGOUT_REDIRECT_URL = '/'`
+- `LOGIN_URL = '/users/login/'`, `LOGIN_REDIRECT_URL = '/main/'`, `LOGOUT_REDIRECT_URL = '/'`
 
 ## Templates
 

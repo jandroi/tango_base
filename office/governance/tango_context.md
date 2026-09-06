@@ -70,7 +70,7 @@ Must support:
 - password reset
 - profile management
 
-### 3.2 `main_branding`
+### 3.2 `main_home`
 
 Purpose: shared UI shell and layout.
 
@@ -82,15 +82,15 @@ Responsibilities:
 
 Path:
 
-- `main_branding/templates/main_branding/base.html`
+- `main_home/templates/main_home/base.html`
 
 Feature templates should extend:
 
 ```django
-{% extends "main_branding/base.html" %}
+{% extends "main_home/base.html" %}
 ```
 
-Branding logic belongs in `main_branding`, not in feature apps.
+Branding logic belongs in `main_home`, not in feature apps.
 
 ### 3.3 `main_project`
 
@@ -237,7 +237,7 @@ The architecture must remain:
 project_root/
   main_project/
   main_users/
-  main_branding/
+  main_home/
   main_media/              # optional central media policy
   app_<feature_a>/
   app_<feature_b>/

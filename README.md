@@ -89,4 +89,3 @@ Then:
 4. Templates go in `app_my_feature/templates/app_my_feature/` and extend `main_home/base.html`.
 
 See `ARCHITECTURE.md` for the full convention.
-"# tango_base" 

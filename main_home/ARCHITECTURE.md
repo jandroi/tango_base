@@ -209,7 +209,7 @@ main_home/
 **Design**:
 - Extends `base.html`
 - Playful "Lost at Sea" theme
-- Image: `static/main_branding/img/404_lost_at_sea.png` (note: references different static path)
+- Image: `static/main_home/img/404_lost_at_sea.jpg`
 - CTA: "Return to Safety" button linking to home
 
 **Tone**: Friendly and humorous to soften the error experience
