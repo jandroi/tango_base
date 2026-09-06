@@ -9,32 +9,37 @@ Includes:
 - `main_home/` — `base.html`, landing page, 404
 - `main_media/` — project-level media root (with `default_profile_picture.jpg` only)
 - `static/main_home/img/` — Tango logos
+- `CLAUDE.md` — fillable harness guidance (`<...>` placeholders)
+- `office/` — project office: `strategy/` lean canvas skeleton, `governance/`, `builds/backlog.md`
+- `.claude/skills/` + `.claude/agents/` — 12 skills and the challenge agent
+- `env.example` — every secret the settings read
 
 ## Use as a template for a new project
 
+Full checklist (placeholders, leak check, acceptance): studio `_governance/project_office_template.md`.
+
 ```bash
-# 1. Copy the folder, drop the existing git history, start fresh
-cp -r tango_base my_new_project
-cd my_new_project
+# 1. Copy the folder, drop the existing git history
+cp -r tango_base tango_<name>
+cd tango_<name>
 rm -rf .git
-git init
 
-# 2. Create a Python environment of your choice
-python -m venv venv
-venv\Scripts\activate            # Windows
-# source venv/bin/activate       # macOS / Linux
+# 2. Replace <project> and <YYYY-MM-DD> placeholders in CLAUDE.md, env.example, office/
 
-# 3. Install dependencies
+# 3. Secrets: copy env.example to .env and set a fresh DJANGO_SECRET_KEY
+#    python -c "from django.core.management.utils import get_random_secret_key as k; print(k())"
+
+# 4. Install dependencies (shared tango_base conda env, or your own)
 pip install -r requirements.txt
 
-# 4. Generate the initial main_users migration and apply it
+# 5. Generate the initial main_users migration and apply it
 python manage.py makemigrations main_users
 python manage.py migrate
 
-# 5. Create a superuser
+# 6. Create a superuser
 python manage.py createsuperuser
 
-# 6. Run the dev server
+# 7. Run the dev server
 python manage.py runserver
 ```
 

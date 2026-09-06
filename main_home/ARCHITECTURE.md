@@ -288,7 +288,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
   - `/users/login/` - Login page
   - `/users/profile/` - User profile
   - `/users/logout/` - Logout
-  - `/hospitality/` - Dashboard (separate app)
+  - `/main/` - Authenticated landing (module selector)
 
 ---
 
@@ -304,7 +304,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 1. Lands on `/` (home page)
 2. Sees "Dashboard" link in navbar
 3. Can access profile via dropdown
-4. CTAs redirect to `/hospitality/` (dashboard)
+4. CTAs redirect to `/main/` (module selector)
 
 ---
 

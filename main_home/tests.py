@@ -2,7 +2,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from main_users.models import MainUser
 
-
 class HomeViewTests(TestCase):
     def setUp(self):
         self.client = Client()
@@ -50,7 +49,6 @@ class HomeViewTests(TestCase):
         self.assertContains(response, 'Main')
         self.assertNotContains(response, 'Dashboard')
 
-
 class DistributorViewTests(TestCase):
     def setUp(self):
         self.client = Client()
@@ -72,12 +70,6 @@ class DistributorViewTests(TestCase):
         response = self.client.get(self.url)
         self.assertTemplateUsed(response, 'main_home/distributor.html')
 
-    def test_distributor_cards_have_expected_named_links(self):
-        self.client.login(username='dist@example.com', password='TestPass123!')
-        response = self.client.get(self.url)
-        self.assertContains(response, 'card-property-management')
-        self.assertContains(response, 'card-brand-standards')
-
     def test_base_logo_authenticated_points_to_main_distributor(self):
         self.client.login(username='dist@example.com', password='TestPass123!')
         response = self.client.get(self.url)
@@ -88,37 +80,12 @@ class DistributorViewTests(TestCase):
         response = self.client.get('/dashboard/')
         self.assertRedirects(response, self.url)
 
-    def test_card_link_property_management_resolves(self):
-        """The Property Management card href must not 404 for authenticated users."""
-        self.client.login(username='dist@example.com', password='TestPass123!')
-        response = self.client.get(reverse('hospitality:landing'))
-        self.assertNotEqual(response.status_code, 404)
-
-    def test_card_link_procurement_resolves(self):
-        """The Procurement card href must not 404 for authenticated users."""
-        self.client.login(username='dist@example.com', password='TestPass123!')
-        response = self.client.get(reverse('procurement:landing'))
-        self.assertNotEqual(response.status_code, 404)
-
-    def test_card_link_brand_standards_resolves(self):
-        """The Brand Standards card href must not 404 for authenticated users."""
-        self.client.login(username='dist@example.com', password='TestPass123!')
-        response = self.client.get(reverse('standards:landing'))
-        self.assertNotEqual(response.status_code, 404)
-
-    def test_authenticated_nav_shows_hotel_audit_link(self):
-        self.client.login(username='dist@example.com', password='TestPass123!')
-        response = self.client.get(self.url)
-        self.assertContains(response, reverse('hotel_audit:landing'))
-        self.assertContains(response, 'Hotel Audit')
-
-
 # ===========================================================================
 # Navigation path integration tests (Section A)
 # ===========================================================================
 
 class NavigationPathTests(TestCase):
-    """End-to-end navigation path: Login -> Main -> Brand Standards -> HESB/Brand Manager."""
+    """End-to-end navigation path: Login -> Main."""
 
     def setUp(self):
         self.client = Client()
@@ -135,17 +102,3 @@ class NavigationPathTests(TestCase):
         })
         self.assertRedirects(response, '/main/', fetch_redirect_response=False)
 
-    def test_standards_landing_loads_and_shows_four_cards(self):
-        self.client.login(username='navpath@example.com', password='TestPass123!')
-        response = self.client.get(reverse('standards:landing'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'data-testid="card-brand-property-configuration"')
-        self.assertContains(response, 'data-testid="card-brand-standard-catalog"')
-        self.assertContains(response, 'data-testid="card-brand-management"')
-        self.assertContains(response, 'data-testid="card-brand-catalog-groups"')
-
-    def test_brand_catalog_path_resolves_and_loads_list(self):
-        self.client.login(username='navpath@example.com', password='TestPass123!')
-        response = self.client.get(reverse('standards:brand_catalog_selector'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Brand Catalog')

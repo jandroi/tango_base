@@ -24,12 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('main_users.urls')),
     path('', include('main_home.urls')),
-    path('data_management/', include('main_data_management.urls', namespace='data_management')),
-    # Feature apps (app_*) are mounted here as they are migrated in from tango_bsm:
-    #   path("property_management/", include("app_hospitality_core.urls")),
-    #   path('brand-standards/', include('app_brand_standard.urls')),
-    #   path('procurement/', include('app_procurement.urls', namespace='procurement')),
-    #   path('hotel_audit/', include('app_hotel_audit.urls', namespace='hotel_audit')),
+    # Feature apps (app_*) are mounted here, one line per app, e.g.:
+    #   path("<feature>/", include("app_<feature>.urls")),
     #   path('inventory/', include('app_inventory.urls', namespace='inventory')),
 ]
 

@@ -24,7 +24,7 @@ Authentication app with a custom email-based user model.
 
 - `AUTH_USER_MODEL = 'main_users.MainUser'`
 - `LOGIN_URL = '/users/login/'`
-- `LOGIN_REDIRECT_URL = '/hospitality/'`
+- `LOGIN_REDIRECT_URL = '/main/'`
 
 ## Notes
 

@@ -21,12 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4t84zh60(f7!=*9n0qb3fi*wal_6n(hgg$r&(ldn+d0*t*-=qg'
+# Real key lives in .env (see env.example). The fallback is for local dev only.
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-dev-only-change-me-in-production',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = ['localhost','http://127.0.0.1', 'www.tangodatalabs.com', 'tangodatalabs.pythonanywhere.com']
+# Comma-separated hostnames in DJANGO_ALLOWED_HOSTS, e.g. "example.com,www.example.com"
+ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if h.strip()
+]
 
 
 # Application definition
@@ -41,7 +49,6 @@ INSTALLED_APPS = [
 
     'main_users',
     'main_home',
-    'main_data_management',
 
     # Optional feature apps (app_*) are added per product or deployment.
     # The platform layer above runs standalone.
@@ -64,7 +71,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'main_home', 'templates'),
-            os.path.join(BASE_DIR, 'main_data_management', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -156,14 +162,12 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100MB
 # (hundreds of items) exceed Django's default 1000-field cap.
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
-# Data Management — bulk import/export root (never under MEDIA_ROOT)
-MAIN_DATA_MANAGEMENT_ROOT = BASE_DIR / "main_data_management" / "data"
 
 # Mailing Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'postmaster@your-domain.com'  # Replace with your Mailgun SMTP user
-EMAIL_HOST_PASSWORD = 'your-mailgun-smtp-password'  # Replace with your Mailgun SMTP password
-DEFAULT_FROM_EMAIL = 'Your App <noreply@your-domain.com>'
+EMAIL_BACKEND = os.environ.get('DJANGO_EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = os.environ.get('DJANGO_EMAIL_HOST', '')
+EMAIL_PORT = int(os.environ.get('DJANGO_EMAIL_PORT', '587'))
+EMAIL_USE_TLS = os.environ.get('DJANGO_EMAIL_USE_TLS', '1') == '1'
+EMAIL_HOST_USER = os.environ.get('DJANGO_EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DJANGO_DEFAULT_FROM_EMAIL', 'noreply@example.com')

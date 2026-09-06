@@ -35,6 +35,9 @@ db.sqlite3-journal
 #/static
 /staticfiles
 
+# Secrets — Django secret key and credentials live here
+.env
+
 # IDE
 .vscode/
 .idea/
